@@ -25,7 +25,10 @@ int Point::get_y()
     return m_y;
 }
 
-
+/*
+功能：用于输出点坐标
+返回值：含有点坐标的结构体
+*/
 point Point::DisplayPoint()
 {
     point t_point;
