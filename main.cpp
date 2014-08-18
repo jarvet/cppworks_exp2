@@ -4,8 +4,8 @@
 #include "classes.h"
 #define in_txt_name "itxt.txt"
 #define out_txt_name "otxt.txt"
-#define in_bin_name "ibin.txt"
-#define out_bin_name "obin.txt"
+#define in_bin_name "ibin.bin"
+#define out_bin_name "obin.bin"
 
 using namespace std;
 
@@ -26,9 +26,9 @@ int main()
         cout<<"选择功能："<<endl;
         cout<<"1.键盘加入一个点"<<endl;
         cout<<"2.键盘删除一个点"<<endl;
-        cout<<"3.文本文件读入折线数据"<<endl;
+        cout<<"3.文本文件读入折线数据(允许折线交叉)"<<endl;
         cout<<"4.文本文件输出折线数据"<<endl;
-        cout<<"5.二进制文件读入折线数据"<<endl;
+        cout<<"5.二进制文件读入折线数据(允许折线交叉)"<<endl;
         cout<<"6.二进制文件输出折线数据"<<endl;
         cout<<"7.屏幕输出折线数据"<<endl;
         cout<<"8.计算当前折线长度"<<endl;

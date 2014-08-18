@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1408290044 source:c:\users\guanwei\desktop\shiyan2\main.cpp
+1408361301 source:c:\users\guanwei\desktop\shiyan2\main.cpp
 	<iostream>
 	<fstream>
 	<iomanip>
@@ -15,7 +15,7 @@
 1408290044 source:c:\users\guanwei\desktop\shiyan2\point3d.cpp
 	"classes.h"
 
-1408288377 source:c:\users\guanwei\desktop\shiyan2\curve3d.cpp
+1408361163 source:c:\users\guanwei\desktop\shiyan2\curve3d.cpp
 	"classes.h"
 	<stdio.h>
 	<math.h>

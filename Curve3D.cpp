@@ -8,7 +8,7 @@ Curve3D::Curve3D(int maxn)
     m_num = 1;
     m_maxn = maxn;
 
-    //初始点坐标默认为（0,0,0）
+    //折线默认包含点（0,0,0）
     m_pt[0].set_x(0);
     m_pt[0].set_y(0);
     m_pt[0].set_z(0);
@@ -60,8 +60,6 @@ Curve3D Curve3D::operator+(Point3D t_point) const
 {
     Curve3D temp;
 
-    temp.m_num = m_num + 1;
-    temp.m_maxn = m_maxn;
 
     for (int i=0; i<m_num; i++)//复制已有点
     {
@@ -70,10 +68,9 @@ Curve3D Curve3D::operator+(Point3D t_point) const
         temp.m_pt[i].set_z(m_pt[i].get_z());
     }
 
-    if (temp.m_num>=m_maxn)//若已达到点数上限则不做操作退出
+    if (temp.m_num>=m_maxn-1)//若已达到点数上限则不做操作退出
     {
         cout<<"!!!!!已超过能加入点的最大数量，将不做改变!!!!!"<<endl;
-        temp.m_num--;
         return temp;
     }
 
@@ -81,6 +78,8 @@ Curve3D Curve3D::operator+(Point3D t_point) const
     temp.m_pt[m_num].set_x(t_point.get_x());
     temp.m_pt[m_num].set_y(t_point.get_y());
     temp.m_pt[m_num].set_z(t_point.get_z());
+    temp.m_num = m_num + 1;
+    temp.m_maxn = m_maxn;
 
     return temp;
 }
@@ -156,11 +155,10 @@ void Curve3D::read_txt(ifstream &is)
     int x,y,z;
     while (!is.eof())
     {
-        m_num++;
-        if (m_num>=m_maxn)//若超过最大数量则停止输入并返回
+
+        if (m_num>=m_maxn-1)//若超过最大数量则停止输入并返回
         {
             cout<<"!!!!!已超过能加入点的最大数量，将不做改变!!!!!"<<endl;
-            m_num--;
             return;
         }
         //读入并设置新加入的点
@@ -168,6 +166,7 @@ void Curve3D::read_txt(ifstream &is)
         m_pt[m_num].set_x(x);
         m_pt[m_num].set_y(y);
         m_pt[m_num].set_z(z);
+        m_num++;
     }
 }
 
@@ -177,7 +176,7 @@ void Curve3D::write_binary(ofstream &os)
     point temp;
     for (int i=0; i<m_num; i++)
     {
-        temp = m_pt[m_num].Point3D::DisplayPoint();
+        temp = m_pt[i].Point3D::DisplayPoint();
         os.write((char *)(&temp),sizeof(point));//将数据以点的结构体point的形式输出到文件
     }
 }
@@ -188,16 +187,15 @@ void Curve3D::read_binary(ifstream &is)
     point temp;
     while (!is.eof())
     {
-        m_num++;//若超过最大数量则停止输入并返回
-        if (m_num>=m_maxn)
+        if (m_num>=m_maxn-1)//若超过最大数量则停止输入并返回
         {
             cout<<"!!!!!已超过能加入点的最大数量，将不做改变!!!!!"<<endl;
-            m_num--;
             return;
         }
         is.read((char *)&temp,sizeof(point));//相对应的，将数据以点的结构体point的形式从文件读入
         m_pt[m_num].set_x(temp.x);
         m_pt[m_num].set_y(temp.y);
         m_pt[m_num].set_z(temp.z);
+        m_num++;
     }
 }
